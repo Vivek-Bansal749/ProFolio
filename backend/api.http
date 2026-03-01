@@ -1,0 +1,62 @@
+POST http://localhost:9080/register HTTP/1.1
+content-Type:application/json
+
+{
+    "username": "vivek01",
+    "password": "vivek01",
+    "email": "vivek@gmail.com",
+    "name": "vivek"
+}
+
+###
+POST http://localhost:9080/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "yash@gmail.com",
+  "password": "yash"
+}
+###
+
+
+POST http://localhost:9080/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "email": "vivek@gmail.com",
+  "password": "vivek01"
+}
+###
+
+GET http://localhost:9080/posts HTTP/1.1
+
+###
+GET http://localhost:9080/get_user_and_profile HTTP/1.1
+Content-Type: application/json
+
+{
+  "token": "c33f62be35933c8c09276a5c9733549c867555e5d3ea4e22b95cb47175509a0e"
+}
+
+###
+POST  http://localhost:9080/update_profile_data HTTP/1.1
+Content-Type: application/json
+
+{
+  "token": "a1635982014e353749e2efe4ff3ff0e25313adb16d300ca999ce231afdf93cc2",
+    "bio": "Hey, My name is Vivek Bansal, a final year student",
+  "currentPost": "CTO",
+  "pastWork": [{
+    "company":"Microsoft",
+    "position":"CTD",
+    "years":"2"
+  }],
+  "education": [{
+    "school":"iiiit",
+    "degree":"B.tech",
+    "fieldOfStudy":"2022-2026"
+  }]
+}
+
+###
+GET http://localhost:9080/user/get_all_users
