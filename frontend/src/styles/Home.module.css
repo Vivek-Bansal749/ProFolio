@@ -1,0 +1,71 @@
+.container{
+    font-family: "Poppins";
+    padding:1.2rem;
+}
+
+.mainContainer{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    padding-inline: 2rem;
+    height:80vh;
+}
+
+.mainContainer_left{
+    flex:0.5;
+}
+
+.mainContainer_right{
+    flex:0.5;
+}
+
+.mainContainer_left > p:nth-child(1){
+    font-size: 2.9rem;
+    background: -webkit-repeating-linear-gradient(70deg,#000000,#9d9d9d);
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mainContainer_left > p:nth-child(2){
+    font-size: 1.7rem;
+}
+
+.mainContainer_left > div.buttonJoin {
+    width: fit-content;
+    cursor:pointer;
+    user-select: none;
+    transition: all 0.2s;
+    margin-top:0.8rem;
+    font-size: 1.4rem;
+    background-color: rgb(146, 106, 224);
+    color: white;
+    padding-inline: 1.2rem;
+    padding-block: 0.8rem;
+    border-radius: 20px;
+}
+
+.mainContainer_right img {
+    /* This makes the image height match the parent div height */
+    height: 100%; 
+    max-height: 300px; /* Adjust this to match your text block height */
+    width: auto;      /* Keeps the aspect ratio perfect */
+    object-fit: contain;
+}
+
+@media only screen and (max-width: 600px) {
+    .mainContainer{
+        flex-direction: column;
+        gap: 2rem;
+        
+    }
+    .mainContainer_left, .mainContainer_right{
+        flex: none;
+        width: 100%;
+    }
+    .mainContainer_right img {
+        max-height: 200px;
+        
+        width: 100%; 
+    }
+}

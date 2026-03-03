@@ -1,0 +1,280 @@
+.container{
+    padding:1.3rem;
+    background: rgb(241, 238, 238);
+    display: flex;
+    flex-direction: column;
+    gap:1.2rem;
+    max-width: 1200px;
+    margin: 0 auto; /* center page content on large screens */
+}
+
+@media only screen and (max-width: 600px) {
+    .container{
+        padding-inline: 1rem;
+    }
+}
+.backDropContainer{
+    width: 100%;
+    height:30vh;
+    background:url(https://plus.unsplash.com/premium_photo-1701764129092-c1288a4826c6?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NDV8fG5hdHVyZSUyMGJhY2tncm91bmR8ZW58MHwwfDB8fHww);
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-radius: 20px;
+
+}
+
+.backDropContainer>img{
+    width: 10em;
+    height: 10em;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -30%;
+    text-align: center;
+    left:19%;
+    transform: translateX(-50%);
+}
+
+.profile_container_details{
+    padding-top:6.6rem;
+    display: flex;
+    justify-content: space-between; /* spread left and right panels */
+}
+.profile_container_details > div:first-child {
+    flex: 0.8;
+}
+.profile_container_details > div:last-child {
+    flex: 0.3;
+    padding-inline: 1.2rem;
+}
+
+.connectBtn{
+    padding-inline:0.8rem;
+    padding-block:0.3rem;
+    background: rgb(29, 125, 221);
+    border:none;
+    outline:none;
+    color:white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.connectedBtn{
+    padding-inline:0.8rem;
+    padding-block:0.3rem;
+    border:1px solid grey;
+    outline:none;
+    color:rgb(29, 125, 221);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.postCard{
+    display:flex;
+    padding-block: 1.2rem;
+    padding-inline: 1.2rem;
+    gap:0.4rem;
+
+}
+
+.backDrop_overlay{
+    width: 10em;
+    height: 10em;
+    object-fit: cover;
+    border-radius: 50%;
+    position: absolute;
+    bottom: -30%;
+    text-align: center;
+    left: 19%;
+    transform: translateX(-50%);
+    z-index: 4;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    color:white;
+    opacity:0.0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.backDrop_overlay:hover{
+    background: rgb(60, 59, 59);
+    opacity: 0.7;
+}
+
+
+/* For the Recent Activity images (the 0.2 column) */
+.card_profileContainer img {
+    width: 90%;       
+    height: 100%;       
+    object-fit: cover;   
+    display: block;
+}
+
+
+
+.workHistory_container{
+    display: flex;
+    gap:1.4rem;
+    padding-top:1.4rem;
+    width: 100%; /* full width for better responsiveness */
+    flex-wrap: wrap;
+}
+
+.workHistory_card{
+    min-width: fit-content;
+    padding-inline: 2.5rem;
+    padding-block:1rem;
+    box-shadow: 10px 10px 10px 0px rgb(173, 173, 173);
+}
+
+.addWorkBtn{
+    padding-inline:1.2rem;
+    padding-block:1.2rem;
+    border-radius: 1.2rem;
+    background: rgb(29, 125, 221);
+    border: 1px dotted silver;
+    outline:none;
+    color:white;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+}
+
+.education_container{
+    display: flex;
+    gap:1.4rem;
+    padding-top:1.4rem;
+    width: 100%; /* span container width */
+    flex-wrap: wrap;
+}
+
+.education_card{
+    min-width: fit-content;
+    padding-inline: 2.5rem;
+    padding-block:1rem;
+    box-shadow: 10px 10px 10px 0px rgb(173, 173, 173);
+
+}
+
+.addEduBtn{
+    padding-inline:1.2rem;
+    padding-block:1.2rem;
+    border-radius: 1.2rem;
+    background: rgb(29, 125, 221);
+    border: 1px dotted silver;
+    outline:none;
+    color:white;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+    display: flex;
+    justify-content:center;
+    margin-top: 10px;
+}
+
+.nameEdit{
+    font-size: 1.5rem;
+    font-weight: bold;
+    border:none;
+    outline:none;
+}
+
+.updateProfileBtn{
+    padding-inline:0.8rem;
+    padding-block:0.3rem;
+    border:1px solid grey;
+    outline:none;
+    background-color: rgb(52, 117, 222);
+    color:rgb(222, 228, 234);
+    border-radius: 10px;
+    cursor: pointer;
+    width: fit-content;
+}
+
+@media only screen and (max-width: 600px) {
+    .updateProfileBtn{
+        margin: 1rem auto;
+    }
+}
+.profile_container_details textarea{
+    outline:none;
+    border:none;
+    padding-inline:10px;
+    padding-block:10px;
+    font-family: "poppins" !important;
+    font-size: 1rem;
+}
+
+.commentContainer{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    z-index: 5;
+    background: rgba(0,0,0,0.7);
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.allCommentContainer{
+    width: 40vw;
+    max-width: 600px;
+    height:fit-content;
+    background:white;
+    border-radius: 10px;
+    position:relative;
+    padding:1.4rem;
+    display: flex;
+    flex-direction:column;
+    gap:1.2rem;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .allCommentContainer{
+        width: 90vw;
+    }
+}
+.inputField{
+    padding-inline:1.3rem;
+    padding-block: 0.8rem;
+    border-radius: 10px;
+    outline:none;
+    border: 1px solid silver;
+    width:100%;
+}
+
+
+
+/* medium screens: start stacking earlier and refine spacing */
+@media only screen and (max-width: 600px) {
+    .profile_container_details {
+        flex-direction: column;
+        align-items: center;
+    }
+    .backDropContainer > img, .backDrop_overlay {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    .nameEdit {
+        font-size: 1.25rem;
+    }
+    .workHistory_container, .education_container {
+        flex-direction: column;
+        align-items: center;
+    }
+    .postCard {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+    }
+    .allCommentContainer {
+        width: 80vw;
+    }
+}

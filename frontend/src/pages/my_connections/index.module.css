@@ -1,0 +1,40 @@
+.userCard {
+    display: flex;
+    width: 100%;
+    gap:1.2rem;
+    padding: 1.2rem;
+    align-items: center;
+    box-shadow: 10px 10px 10px 0px rgb(223, 225, 223);
+    cursor: pointer;
+}
+
+.profilePicture > img{
+    width:6.5rem;
+    border-radius: 50%;
+}
+
+.connectedBtn{
+    padding-inline:0.8rem;
+    padding-block:0.3rem;
+    border:1px solid grey;
+    outline:none;
+    color:rgb(29, 125, 221);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+    /* stack card items vertically on small screens */
+    .userCard {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+    .profilePicture > img {
+        width: 8rem;
+        margin-bottom: 0.8rem;
+    }
+    .connectedBtn {
+        margin-top: 0.8rem;
+    }
+}
