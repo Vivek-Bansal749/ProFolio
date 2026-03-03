@@ -26,7 +26,7 @@ const UserSchem = new mongoose.Schema({
     },
     profilePicture:{
         type : String,
-        default: "default.jpg",
+        default: "https://res.cloudinary.com/ddwqdl5eg/image/upload/v1772537963/linkedin-clone/profile-pictures/mnatrenmkfm3txxsf56u.png",
     },
     createdAt:{
         type: Date,

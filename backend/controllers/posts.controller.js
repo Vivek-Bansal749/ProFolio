@@ -24,7 +24,8 @@ export const createPost = async(req,res)=>{
         const post = new Post({
             userId:user._id,
             body:req.body.body,
-            media: req.file != undefined ? req.file.filename : "",
+            // Store the Cloudinary URL (secure_url) from the uploaded file
+            media: req.file ? (req.file.secure_url || req.file.path) : "",
             fileType: req.file !=undefined ? req.file.mimetype.split("/")[1]:""
         })
 

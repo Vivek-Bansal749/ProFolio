@@ -22,7 +22,7 @@ app.use(cors());
 
 app.use(postRoutes);
 app.use(userRoutes);
-app.use(express.static("uploads"));
+// Removed static uploads folder - now using Cloudinary for file storage
 
 
 const start = async () =>{

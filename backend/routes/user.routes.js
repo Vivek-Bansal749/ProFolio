@@ -1,25 +1,12 @@
 import { Router } from "express";
 import {register,login, uploadProfilePicture, updateUserProfile, getUserAndProfile, updateProfileData, getAllUserProfile, downloadProfile, getMyConnectionRequests, sendConenctionRequest, whatAreMyConnections, acceptConnectionRequest,getUserProfileAndUserBasedOnUsername} from "../controllers/user.controller.js"
-import multer from "multer"
+import { uploadProfilePicture as uploadCloud } from "../utils/cloudinary.js"
 
 
 const router = Router();
 
-
-const storage =  multer.diskStorage({
-    destination: (req, file, cb) =>{
-        cb(null,'uploads/')
-    },
-    filename:(req, file, cb)=>{
-        cb(null, file.originalname)
-    }
-})
-
-
-const upload = multer({storage: storage})
-
 router.route("/update_profile_picture")
-.post(upload.single('profile_picture'),uploadProfilePicture);
+.post(uploadCloud.single('profile_picture'),uploadProfilePicture);
 
 router.route('/register').post(register);
 router.route('/login').post(login);

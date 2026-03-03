@@ -5,8 +5,33 @@ import bcrypt from "bcrypt";
 import crypto from "crypto"
 import PDFDocument from "pdfkit";
 import fs from "fs";
+import https from "https";
+import http from "http";
 import ConnectionRequest from "../models/connection.model.js";
 import Comment from "../models/comments.model.js";
+
+// Helper function to download image from URL and return local path
+const downloadImage = (url, filepath) => {
+    return new Promise((resolve, reject) => {
+        const protocol = url.startsWith('https') ? https : http;
+        protocol.get(url, (response) => {
+            if (response.statusCode === 301 || response.statusCode === 302) {
+                // Handle redirect
+                downloadImage(response.headers.location, filepath).then(resolve).catch(reject);
+                return;
+            }
+            const file = fs.createWriteStream(filepath);
+            response.pipe(file);
+            file.on('finish', () => {
+                file.close();
+                resolve(filepath);
+            });
+        }).on('error', (err) => {
+            fs.unlink(filepath, () => {});
+            reject(err);
+        });
+    });
+};
 
 const convertUserDataTOPDF = async (userData)=> {
     const doc = new PDFDocument();
@@ -15,7 +40,26 @@ const convertUserDataTOPDF = async (userData)=> {
     const stream = fs.createWriteStream("uploads/"+outputPath);
     doc.pipe(stream);
 
-    doc.image(`uploads/${userData.userId.profilePicture}`,{ align:"center", width: 100});
+    // Handle profile picture - check if it's a Cloudinary URL or local file
+    const profilePicture = userData.userId.profilePicture;
+    if (profilePicture) {
+        try {
+            if (profilePicture.startsWith('http')) {
+                // It's a Cloudinary URL - download it first
+                const tempImagePath = `uploads/temp_${crypto.randomBytes(16).toString("hex")}.jpg`;
+                await downloadImage(profilePicture, tempImagePath);
+                doc.image(tempImagePath,{ align:"center", width: 100});
+                // Clean up temp file
+                fs.unlink(tempImagePath, () => {});
+            } else {
+                // It's a local file path
+                doc.image(`uploads/${profilePicture}`,{ align:"center", width: 100});
+            }
+        } catch (err) {
+            console.log("Could not add profile picture to PDF:", err.message);
+        }
+    }
+    
     doc.fontSize(14).text(`Name:${userData.userId.name}`);
     doc.fontSize(14).text(`Username:${userData.userId.username}`);
     doc.fontSize(14).text(`Email:${userData.userId.email}`);
@@ -93,8 +137,11 @@ export const uploadProfilePicture = async (req,res) => {
         if(!foundUser){
             return res.status(404).json({message: "User Not found"});
         }
+        
 
-        foundUser.profilePicture = req.file.filename;
+        // Store the Cloudinary URL (secure_url) from the uploaded file
+        // multer-storage-cloudinary stores the Cloudinary response in req.file
+        foundUser.profilePicture = req.file.secure_url || req.file.path;
 
         await foundUser.save();
 
