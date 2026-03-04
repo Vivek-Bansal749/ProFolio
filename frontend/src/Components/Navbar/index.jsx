@@ -18,7 +18,7 @@ function NavBarComponent() {
         <nav className={styles.navBar}>
             <h2 style={{cursor:"pointer"}} onClick={()=>{
                 router.push("/")
-            }}>Pro Connect</h2>
+            }}>ProFolio</h2>
 
             <div className={styles.navBarOptionContainer}>
 
